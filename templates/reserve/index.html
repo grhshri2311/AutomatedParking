@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<head>
+		<style>
+		* {
+		  box-sizing: border-box;
+		}
+
+		input[type=number], pass, textarea {
+		  width: 100%;
+		  padding: 12px;
+		  border: 1px solid #ccc;
+		  border-radius: 4px;
+		  resize: vertical;
+		}
+		input[type=password], pass, textarea {
+			width: 100%;
+			padding: 12px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			resize: vertical;
+		}
+
+		input[type=file], pass, textarea {
+			width: 100%;
+			padding: 12px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			resize: vertical;
+		}
+
+		label {
+		  padding: 12px 12px 12px 0;
+		  display: inline-block;
+		}
+
+		input[type=submit] {
+		  background-color: #4CAF50;
+		  color: white;
+		  padding: 12px 20px;
+		  border: none;
+		  border-radius: 4px;
+		  cursor: pointer;
+		  float: right;
+		}
+
+		input[type=submit]:hover {
+		  background-color: #45a049;
+		}
+
+		.container {
+		  border-radius: 5px;
+		  background-color: #f2f2f2;
+		  padding: 20px;
+		}
+
+		.col-25 {
+		  float: left;
+		  width: 25%;
+		  margin-top: 6px;
+		}
+
+		.col-75 {
+		  float: left;
+		  width: 75%;
+		  margin-top: 6px;
+		}
+
+		/* Clear floats after the columns */
+		.row:after {
+		  content: "";
+		  display: table;
+		  clear: both;
+		}
+
+		/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+		@media screen and (max-width: 600px) {
+		  .col-25, .col-75, input[type=submit] {
+		    width: 100%;
+		    margin-top: 0;
+		  }
+		}
+		</style>
+		</head>
+	</head>
+
+<center><font color="violet"><h4 id="title" ></h4></font></center>
+
+
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+
+<script>
+
+var url_string = window.location.href;
+
+var url = new URL(url_string);
+var c = url.searchParams.get("name");
+
+
+
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDU09icT7AwZv1C2ryphnLrYYhuZ-5t2OY",
+    authDomain: "automatedparking-60f62.firebaseapp.com",
+    databaseURL: "https://automatedparking-60f62-default-rtdb.firebaseio.com",
+    projectId: "automatedparking-60f62",
+    storageBucket: "automatedparking-60f62.appspot.com",
+    messagingSenderId: "561866714008",
+    appId: "1:561866714008:web:3afedd6fcec1b8491499ed"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+		var database = firebase.database().ref();
+var content = '';	database.child("park").child(c).on("value", function(snapshot) {
+
+ 		if(snapshot!=null && snapshot.val()!=null){
+ 		document.getElementById('title').innerHTML = "Your Slot number is "+snapshot.val().slot_No; 
+ 		}
+ 		else{
+ 		window.location.replace('http://0.0.0.0:5000/reserved?name='+c);
+	 }
+       });
+
+    
+               
+  
+
+    
+    
+</script>
+</body>
+</html>

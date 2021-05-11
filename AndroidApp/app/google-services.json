@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "561866714008",
+    "firebase_url": "https://automatedparking-60f62-default-rtdb.firebaseio.com",
+    "project_id": "automatedparking-60f62",
+    "storage_bucket": "automatedparking-60f62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561866714008:android:e6d3bff58e6d99501499ed",
+        "android_client_info": {
+          "package_name": "com.example.smartparking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "561866714008-ajifeggj9i5fab6mj0sas1gnufdpr4u1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.smartparking",
+            "certificate_hash": "5ea04d1025614d1eff43bfa14700e9b5fd7c871d"
+          }
+        },
+        {
+          "client_id": "561866714008-0jj4bl4mrs70f14n2fuamt2bqubc2arn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLOWEsNXEg6luvnfN1oBztACzIcjI2RHQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "561866714008-0jj4bl4mrs70f14n2fuamt2bqubc2arn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561866714008:android:50e0d5aaccf463371499ed",
+        "android_client_info": {
+          "package_name": "com.luckylad.automatedParking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "561866714008-0jj4bl4mrs70f14n2fuamt2bqubc2arn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLOWEsNXEg6luvnfN1oBztACzIcjI2RHQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "561866714008-0jj4bl4mrs70f14n2fuamt2bqubc2arn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,141 @@
+<table style="width:100%" id="ex-table">
+
+ </table> 
+
+  <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+
+<script>
+
+var url_string = window.location.href;
+
+var url = new URL(url_string);
+var c = url.searchParams.get("name");
+
+
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDU09icT7AwZv1C2ryphnLrYYhuZ-5t2OY",
+    authDomain: "automatedparking-60f62.firebaseapp.com",
+    databaseURL: "https://automatedparking-60f62-default-rtdb.firebaseio.com",
+    projectId: "automatedparking-60f62",
+    storageBucket: "automatedparking-60f62.appspot.com",
+    messagingSenderId: "561866714008",
+    appId: "1:561866714008:web:3afedd6fcec1b8491499ed"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+		var database = firebase.database().ref();
+var content = '';	database.child("payment").child(c).child("a").on("value", function(snapshot) {
+var works=[];
+var workload = []
+ var row1=0;
+	  var table =document.getElementById("ex-table");
+	  
+	    var rowCount = table.rows.length;
+  for (var i = tableHeaderRowCount; i < rowCount; i++) {
+  table.deleteRow(tableHeaderRowCount);
+  }
+            snapshot.forEach(function(data){
+            
+          
+       var val = data.val();
+       if(val.status !="Paid"){
+       workload[data.key]=(data.val());
+       
+       var row = table.insertRow(row1++);
+
+       var cell1 = row.insertCell(0);
+       var cell2 = row.insertCell(1);
+       var cell3 = row.insertCell(2);
+       var cell4 = row.insertCell(3);
+       
+	works.push(data.key);
+       cell1.innerHTML = val.amt;
+       cell2.innerHTML = val.date;
+       cell3.innerHTML = val.status;
+       cell4.innerHTML = "<button class='form-control'>Pay Now</button>";
+       cell4.id=row1-1;
+       cell4.onclick=function submit(){
+          var com=confirm("Confirm Payment !");
+          if(com!=true){
+
+            return;
+          }
+          else{
+          workload[works[cell4.id]].status = "Paid"; 
+          firebase.database().ref("/payment/"+c+"/a").once('value').then(function(snapshot) {
+              var val=snapshot.val();
+              
+              val[works[cell4.id]] = workload[works[cell4.id]];
+              
+              firebase.database().ref("/payment/"+c+"/a").update(val);
+              firebase.database().ref("/Users/"+c).once('value').then(function(s) {
+              var v = s.val();
+              v.balance-=workload[works[cell4.id]].amt;
+              firebase.database().ref("/Users/"+c).update(v);
+              alert(workload[works[cell4.id]].status);
+
+              });
+                          
+                          
+          
+              
+              });
+          
+          
+          }
+
+	}
+
+       cell1.style.backgroundColor = "#F6FFF0";
+
+       cell1.style.textAlign = "center";
+       cell2.style.backgroundColor = "#F6FFF0";
+
+       cell2.style.textAlign = "center";
+       cell3.style.backgroundColor = "#F6FFF0";
+
+       cell3.style.textAlign = "center";
+       cell4.style.backgroundColor = "#F6FFF0";
+
+       cell4.style.textAlign = "center";
+}
+     });
+     
+     var row = table.insertRow(0);
+     
+     var cell1 = row.insertCell(0);
+       var cell2 = row.insertCell(1);
+       var cell3 = row.insertCell(2);
+       var cell4 = row.insertCell(3);
+       
+
+       cell1.innerHTML = "<b>Amount</b>";
+       cell2.innerHTML = "<b>Date</b>";
+       cell3.innerHTML = "<b>Status</b>";
+       cell4.innerHTML = "<b>Pay Now</b>";
+
+
+       cell1.style.backgroundColor = "#F6FFF0";
+
+       cell1.style.textAlign = "center";
+       cell2.style.backgroundColor = "#F6FFF0";
+
+       cell2.style.textAlign = "center";
+       cell3.style.backgroundColor = "#F6FFF0";
+
+       cell3.style.textAlign = "center";
+       cell4.style.backgroundColor = "#F6FFF0";
+
+       cell4.style.textAlign = "center";
+
+  });
+                
+  
+
+    
+    
+</script>
