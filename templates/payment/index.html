@@ -33,10 +33,10 @@ var works=[];
 var workload = []
  var row1=0;
 	  var table =document.getElementById("ex-table");
-	  
+	var  tableHeaderRowCount =0;
 	    var rowCount = table.rows.length;
   for (var i = tableHeaderRowCount; i < rowCount; i++) {
-  table.deleteRow(tableHeaderRowCount);
+  table.deleteRow(i);
   }
             snapshot.forEach(function(data){
             
